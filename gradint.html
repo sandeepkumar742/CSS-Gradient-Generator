@@ -1,0 +1,164 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         body{
+      width: 100%;
+      height: 100vh;
+      background-image: linear-gradient(
+        to right top,
+        #051937,
+        #004d7a,
+        #008793,
+        #00bf72,
+        #a8eb12
+      );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Poppins", sans-serif;
+      color: #fff;
+    }
+
+    section{
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    button{
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+    }
+
+    button:hover{
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .copycode{
+      margin-top: 20px;
+      padding: 12px;
+      background: #111;
+      color: #0f0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 14px;
+      user-select: none;
+      transition: background 0.3s;
+    }
+
+    .copycode:hover{
+      background: #222;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0f0;
+      color: #111;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      display: none;
+    }
+
+    .copycode{
+  margin-top: 20px;
+  padding: 12px;
+  background: #111;
+  color: #0f0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 14px;
+  user-select: all;          /* select hota dikhai de */
+  transition: transform .08s, background .3s;
+}
+.copycode:active{ transform: scale(0.99);
+ }
+/* #copyStatus{ font-size: 12px; color:#c8ffc8; 
+} */
+    </style>
+ </head>
+ <body>
+    <section>
+        <div>
+            <button id="myButton">#051937</button>
+            <button id="myButton2">#008793</button>
+         </div>
+         <h2>
+  Click below to copy your CSS gradient code
+  <small id="copyStatus" aria-live="polite" style="margin-left:8px;"></small>
+</h2>
+
+<div class="copycode" id="copyBox" title="Click to copy">
+  background-image: linear-gradient(to right, #aef194, #9850df);
+</div>
+         </div>
+    </section>
+    <script>
+        let btn1 = document.getElementById("myButton");
+        let btn2 = document.getElementById("myButton2");
+        //  let copyDiv = document.querySelector(".copyCode");
+         let rgb1 = "#004773";
+         let rgb2 = "#54d542";
+
+        //  background-image: liner-gradient(to right, #047eea, #0ba5aa);
+
+        const myhexValues = () =>{
+              let myHexValues = "0123456789abcdef";
+            let colors = "#";
+             for(let i = 0; i < 6; i++){
+                colors = colors + myHexValues[Math.floor(Math.random() * 16) ];
+             }
+                      return colors;
+
+
+        };
+         
+        // copy//
+        let copyDiv = document.querySelector(".copycode");
+
+        const handleButton1 = () => {
+             rgb1 = myhexValues();
+            console.log(rgb1);
+            btn1.innerText = rgb1;
+          document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+copyDiv.innerText = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+       };
+
+        const handleButton2 = () =>{
+              rgb2 = myhexValues();
+            console.log(rgb2);
+            btn2.innerText = rgb2;
+
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+            copyDiv.innerHTML = ` bacground-image: linear-gradient(to right, ${rgb1}, ${rgb2})`;
+
+        };
+
+    
+            btn1.addEventListener("click", handleButton1);
+        btn2.addEventListener("click", handleButton2);
+
+        copyDiv.addEventListener("click", () =>{
+            navigator.clipboard.writeText(copyDiv.innerText);
+        });
+
+    </script>
+ </body>
+ </html>
